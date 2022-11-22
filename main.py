@@ -2,10 +2,6 @@ from fastapi import FastAPI, File, UploadFile
 import uuid
 import os
 from fastapi.responses import FileResponse
-import cv2
-import numpy as np
-import matplotlib.pyplot as plt
-import matplotlib.image as img
 
 
 app = FastAPI()
@@ -16,11 +12,6 @@ async def root():
     path = os.getcwd()
     print(path)
     return {"message": "Hello World!"}
-
-
-@app.get("/hello/{name}")
-async def say_hello(name: str):
-    return {"message": f"Hello {name}"}
 
 
 @app.post("/image/sharpening")
