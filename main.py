@@ -3,7 +3,7 @@ import uuid
 import os
 from fastapi.responses import FileResponse
 from starlette.middleware.cors import CORSMiddleware
-
+import Edgedetecting, Thresholding, Singcos, Sharpening, Lens
 
 
 app = FastAPI()
@@ -28,7 +28,7 @@ async def root():
     return {"message": "Hello World!"}
 
 
-@app.post("/image/sharpening")
+@app.post("/image/upload")
 async def create_upload_file(file: UploadFile):
     content = await file.read()
     filename = f"{str(uuid.uuid4())}.jpg"  # uuid로 유니크한 파일명으로 변경
@@ -37,7 +37,16 @@ async def create_upload_file(file: UploadFile):
     return {"filename": filename}
 
 
+@app.post("/image/edge")
+async def edge_detecting(file: UploadFile):
+    content = await file.read()
+    filename = f"{str(uuid.uuid4())}.jpg"
+    with open(os.path.join('./image', filename), "wb") as fp:
+        fp.write(content)
+    Edgedetecting.edge_dec('./image/'+filename)
+    return {"filename": filename}
+
 @app.get("/download/{name_file}")
 def get_file(name_file: str):
-    return FileResponse(path='./image' + "/" + name_file)
+    return FileResponse(path='./static/' + name_file)
 

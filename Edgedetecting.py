@@ -9,4 +9,5 @@ def edge_dec(image, k=0):
         canny_edge_img = cv2.Canny(blurred_img,40,50)
     elif(k==0):
         canny_edge_img = cv2.Canny(blurred_img,65,85)
-    cv2.imwrite('./static/'+image, canny_edge_img)
+    image_name = image[8:]
+    cv2.imwrite('./static/'+image_name, canny_edge_img)
