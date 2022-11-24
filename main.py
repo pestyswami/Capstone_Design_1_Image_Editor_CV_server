@@ -2,10 +2,23 @@ from fastapi import FastAPI, File, UploadFile
 import uuid
 import os
 from fastapi.responses import FileResponse
+from starlette.middleware.cors import CORSMiddleware
+
 
 
 app = FastAPI()
 
+origins = [
+    "http://13.209.128.91:8000",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/")
 async def root():
