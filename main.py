@@ -29,7 +29,7 @@ async def root():
 
 
 @app.post("/image/upload")
-async def create_upload_file(file: UploadFile):
+async def test_upload_file(file: UploadFile):
     content = await file.read()
     filename = f"{str(uuid.uuid4())}.jpg"  # uuid로 유니크한 파일명으로 변경
     with open(os.path.join('./image', filename), "wb") as fp:
@@ -58,7 +58,7 @@ async def lens(file: UploadFile):
 
 
 @app.post("/image/thresholding")
-async def lens(file: UploadFile):
+async def thresholding(file: UploadFile):
     content = await file.read()
     filename = f"{str(uuid.uuid4())}.jpg"
     with open(os.path.join('./image', filename), "wb") as fp:
