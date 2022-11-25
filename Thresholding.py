@@ -24,4 +24,5 @@ def Local_Thresholding(img,k=0, mask_size=3, C=0.9):
         result = result.astype('uint8')
     elif(k==0):
         result= cv2.adaptiveThreshold(image, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 15, 10)
-    cv2.imwrite('./static/'+img, result)
+    image_name = image[8:]
+    cv2.imwrite('./static/'+image_name, result)
