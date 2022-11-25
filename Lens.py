@@ -23,4 +23,5 @@ def lens(image, k=0):
     mapx = ((mapx + 1)*cols-1)/2
     mapy = ((mapy + 1)*rows-1)/2
     nimg = cv2.remap(img,mapx,mapy,cv2.INTER_LINEAR)
-    cv2.imwrite('./static/'+image, nimg)
+    image_name = image[8:]
+    cv2.imwrite('./static/'+image_name, nimg)

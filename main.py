@@ -46,6 +46,17 @@ async def edge_detecting(file: UploadFile):
     Edgedetecting.edge_dec('./image/'+filename)
     return {"filename": filename}
 
+
+@app.post("/image/lens")
+async def lens(file: UploadFile):
+    content = await file.read()
+    filename = f"{str(uuid.uuid4())}.jpg"
+    with open(os.path.join('./image', filename), "wb") as fp:
+        fp.write(content)
+    Lens.lens('./image/' + filename)
+    return {"filename": filename}
+
+
 @app.get("/download/{name_file}")
 def get_file(name_file: str):
     return FileResponse(path='./static/' + name_file)
