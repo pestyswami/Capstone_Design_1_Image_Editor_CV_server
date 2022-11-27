@@ -15,8 +15,9 @@ def sincos(image, k=0):
     elif(k==1):
         img_lens=cv2.remap(img, mapx, cosy, cv2.INTER_LINEAR, None, cv2.BORDER_REPLICATE)
     else:
-        img_lens=cv2.remap(img, sinx, cosy, cv2.INTER_LINEAR, None, cv2.BORDER_REPLICATE) 
-    cv2.imwrite('./static/'+image,img_lens)
+        img_lens=cv2.remap(img, sinx, cosy, cv2.INTER_LINEAR, None, cv2.BORDER_REPLICATE)
+    image_name = image[8:]
+    cv2.imwrite('./static/'+image_name,img_lens)
 
         
         

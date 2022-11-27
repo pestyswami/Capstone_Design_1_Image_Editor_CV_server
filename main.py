@@ -67,6 +67,26 @@ async def thresholding(file: UploadFile):
     return {"filename": filename}
 
 
+@app.post("/image/singcos")
+async def singcos(file: UploadFile):
+    content = await file.read()
+    filename = f"{str(uuid.uuid4())}.jpg"
+    with open(os.path.join('./image', filename), "wb") as fp:
+        fp.write(content)
+    Singcos.sincos('./image/' + filename)
+    return {"filename": filename}
+
+
+@app.post("/image/sharpening")
+async def sharpening(file: UploadFile):
+    content = await file.read()
+    filename = f"{str(uuid.uuid4())}.jpg"
+    with open(os.path.join('./image', filename), "wb") as fp:
+        fp.write(content)
+    Sharpening.kernel_sharpening('./image/' + filename)
+    return {"filename": filename}
+
+
 @app.get("/download/{name_file}")
 def get_file(name_file: str):
     return FileResponse(path='./static/' + name_file)
