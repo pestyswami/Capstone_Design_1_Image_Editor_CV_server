@@ -10,4 +10,5 @@ def kernel_sharpening(image, k=0):
     elif(k==1):
         smoothed = cv2.GaussianBlur(img, (25, 25), 2)
         sharpended = cv2.addWeighted(img, 1.5, smoothed, -0.5, 0)
-    cv2.imwrite('./static/'+image, sharpended)
+    image_name = image[8:]
+    cv2.imwrite('./static/'+image_name, sharpended)
