@@ -9,6 +9,7 @@ import Edgedetecting, Thresholding, Singcos, Sharpening, Lens
 app = FastAPI()
 
 origins = [
+    "http://13.209.128.91"
     "http://13.209.128.91:8000",
     "http://localhost:3000",
 ]
